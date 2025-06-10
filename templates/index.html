@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Translator</title>
+    
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Background Image with Gradient Overlay */
+        body {
+            background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) ), 
+                        url("/static/bg.jpg") no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 3D Glassmorphism Card */
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            width: 400px;
+            text-align: center;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Input and Select Styling */
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Buttons with Cool Hover Effects */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn.translate {
+    background: linear-gradient(90deg, #ff8c00, #ff512f); /* Orange-Red Gradient */
+    color: white;
+}
+
+.btn.translate:hover {
+    background: linear-gradient(90deg, #ffa500, #ff6347); /* Brighter Orange */
+    transform: translateY(-2px);
+}
+
+
+        .btn.speak {
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Purple-Blue Gradient */
+    color: white;
+}
+
+.btn.speak:hover {
+    background: linear-gradient(90deg, #7f21e4, #2b87ff); /* Brighter Purple */
+    transform: translateY(-2px);
+}
+
+
+        /* Output Text */
+        #outputText {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1 class="text-3xl font-bold text-black mb-4">🧠 AI Translator</h1>
+
+        <input type="text" id="inputText" placeholder="Enter text...">
+        
+        <select id="language">
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <option value="de">German</option>
+            <option value="hi">Hindi</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+        </select>
+
+        <button onclick="speakText()" class="btn speak">🎤 Speak</button>
+
+        <button onclick="translateText()" class="btn translate mt-3">🔄 Translate</button>
+
+        <p id="outputText"></p>
+    </div>
+</body>
+</html>
